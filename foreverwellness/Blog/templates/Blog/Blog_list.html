@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ForeverWellness Blog - Wellness Articles & Tips</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Color Scheme - Consistent Brand Colors */
+    :root {
+      --primary: #2a9d8f;
+      /* Teal - for wellness & vitality */
+      --primary-dark: #1d7873;
+      /* Darker teal */
+      --secondary: #e9c46a;
+      /* Soft gold - for energy */
+      --accent: #e76f51;
+      /* Coral - for action/CTAs */
+      --light: #f8f9fa;
+      /* Light background */
+      --dark: #264653;
+      /* Dark blue-gray - for text/nav */
+      --gray: #6c757d;
+      /* Medium gray */
+      --light-gray: #e9ecef;
+      /* Light gray */
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --border-radius: 10px;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: var(--primary-dark);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(42, 157, 143, 0.2);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(42, 157, 143, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-accent:hover {
+      background-color: #d65c40;
+      transform: translateY(-3px);
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 20px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: 32px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-main {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--secondary);
+      letter-spacing: 1.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 16px;
+      transition: var(--transition);
+      padding: 5px 0;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(rgba(42, 157, 143, 0.9),
+          rgba(38, 70, 83, 0.9)),
+        url("https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .page-header p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Blog Content Area */
+    .blog-content {
+      padding: 60px 0;
+    }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 40px;
+    }
+
+    /* Featured Article */
+    .featured-article {
+      grid-column: 1 / -1;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .featured-image {
+      height: 100%;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .featured-article:hover .featured-image img {
+      transform: scale(1.05);
+    }
+
+    .featured-content {
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-category {
+      display: inline-block;
+      background-color: rgba(42, 157, 143, 0.1);
+      color: var(--primary);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .featured-category:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .featured-title {
+      font-size: 32px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .featured-title a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .featured-title a:hover {
+      color: var(--primary);
+    }
+
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 25px;
+      color: var(--gray);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-item i {
+      color: var(--primary);
+    }
+
+    .featured-excerpt {
+      color: var(--gray);
+      margin-bottom: 30px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* Articles Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      height: auto;
+    }
+
+    .article-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .article-image {
+      height: 220px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .article-card:hover .article-image img {
+      transform: scale(1.05);
+    }
+
+    .article-content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .article-category {
+      display: inline-block;
+      background-color: rgba(42, 157, 143, 0.1);
+      color: var(--primary);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 15px;
+      transition: var(--transition);
+    }
+
+    .article-category:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .article-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .article-title a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .article-title a:hover {
+      color: var(--primary);
+    }
+
+    .article-excerpt {
+      color: var(--gray);
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--gray);
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    .article-date {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .article-read-time {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .article-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      margin-top: 15px;
+    }
+
+    .article-read-more:hover {
+      gap: 12px;
+    }
+
+    /* Blog Sidebar */
+    .blog-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .sidebar-widget {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .widget-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--light-gray);
+      position: relative;
+    }
+
+    .widget-title::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    /* Search Widget */
+    .search-form {
+      display: flex;
+      margin-bottom: 0;
+    }
+
+    .search-input {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: 1px solid var(--light-gray);
+      border-right: none;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+      font-size: 15px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .search-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Categories Widget */
+    .categories-list {
+      list-style: none;
+    }
+
+    .categories-list li {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .categories-list li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .categories-list a {
+      display: flex;
+      justify-content: space-between;
+      color: var(--gray);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .categories-list a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .category-count {
+      background-color: rgba(42, 157, 143, 0.1);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    /* Recent Posts Widget */
+    .recent-posts {
+      list-style: none;
+    }
+
+    .recent-post-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .recent-post-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .recent-post-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .recent-post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .recent-post-item:hover .recent-post-image img {
+      transform: scale(1.1);
+    }
+
+    .recent-post-content h4 {
+      font-size: 15px;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .recent-post-content h4 a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .recent-post-content h4 a:hover {
+      color: var(--primary);
+    }
+
+    .recent-post-content .article-date {
+      font-size: 13px;
+    }
+
+    /* Newsletter Widget */
+    .newsletter-widget p {
+      color: var(--gray);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--light-gray);
+      border-radius: var(--border-radius);
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Tags Widget */
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: var(--light);
+      color: var(--gray);
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-size: 14px;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid var(--light-gray);
+    }
+
+    .tag:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+      gap: 10px;
+    }
+
+    .page-numbers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: var(--white);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    .page-numbers:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .page-numbers.current {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .page-numbers.dots {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    /* Popular Articles */
+    .popular-articles {
+      margin-top: 60px;
+    }
+
+    .popular-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .popular-article {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: var(--transition);
+    }
+
+    .popular-article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .popular-rank {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--white);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .popular-article h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .popular-article h3 a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .popular-article h3 a:hover {
+      color: var(--primary);
+    }
+
+    .popular-article .article-date {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /* Newsletter CTA */
+    .newsletter-cta {
+      background: linear-gradient(rgba(42, 157, 143, 0.9),
+          rgba(38, 70, 83, 0.9)),
+        url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      text-align: center;
+      padding: 100px 0;
+      border-radius: var(--border-radius);
+      margin-top: 80px;
+    }
+
+    .newsletter-cta h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .newsletter-cta p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      gap: 10px;
+    }
+
+    .newsletter-input-large {
+      flex-grow: 1;
+      padding: 15px 20px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+    }
+
+    .newsletter-input-large:focus {
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 80px 0 30px;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-column h3 {
+      font-size: 22px;
+      margin-bottom: 25px;
+      color: var(--secondary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: var(--light-gray);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+      color: var(--light-gray);
+    }
+
+    .footer-contact i {
+      color: var(--secondary);
+      margin-top: 4px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--light-gray);
+      font-size: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+      .page-header h1 {
+        font-size: 42px;
+      }
+
+      .blog-layout {
+        grid-template-columns: 1fr 300px;
+        gap: 30px;
+      }
+
+      .articles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      }
+
+      .featured-title {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .page-header {
+        padding: 100px 0 60px;
+      }
+
+      .page-header h1 {
+        font-size: 38px;
+      }
+
+      .page-header p {
+        font-size: 18px;
+      }
+
+      /* On tablets, sidebar moves below posts */
+      .blog-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .featured-article {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-image {
+        min-height: 300px;
+      }
+
+      .featured-content {
+        padding: 40px;
+      }
+
+      .blog-sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .newsletter-cta h2 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 25px 20px;
+        box-shadow: 0 10px 20px var(--shadow);
+        gap: 20px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .blog-content {
+        padding: 40px 0;
+      }
+
+      .articles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .article-content,
+      .sidebar-widget {
+        padding: 20px;
+      }
+
+      .newsletter-cta h2 {
+        font-size: 30px;
+      }
+
+      .newsletter-cta p {
+        font-size: 18px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .popular-articles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .page-header h1 {
+        font-size: 32px;
+      }
+
+      .page-header p {
+        font-size: 16px;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+      }
+
+      .featured-title {
+        font-size: 24px;
+      }
+
+      .article-title {
+        font-size: 18px;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .article-image {
+        height: 200px;
+      }
+
+      .newsletter-cta h2 {
+        font-size: 26px;
+      }
+
+      .newsletter-cta p {
+        font-size: 16px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .featured-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .logo-icon {
+        font-size: 26px;
+      }
+
+      .logo-main {
+        font-size: 18px;
+      }
+
+      .logo-sub {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container header-container">
+      <a href="{% url 'home' %}" class="logo">
+        <i class="fas fa-leaf logo-icon"></i>
+        <div class="logo-text">
+          <span class="logo-main">ForeverWellnessKe</span>
+          <span class="logo-sub">NATURAL CARE</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'product_list' %}">Products</a></li>
+        <li><a href="{% url 'blog_list' %}" class="active">Blog</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Wellness Insights & Articles</h1>
+      <p>
+        Discover expert advice, natural wellness strategies, and the latest
+        research on living a healthier, more vibrant life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="blog-content">
+    <div class="container">
+      <!-- Featured Article -->
+      {% if featured_blog %}
+      <div class="featured-article">
+        <div class="featured-image">
+          <img src="{{ featured_blog.image.url }}" alt="{{ featured_blog.title }}" />
+        </div>
+        <div class="featured-content">
+          <a href="{% url 'blog_detail' featured_blog.slug %}" class="featured-category">{{ featured_blog.category }}</a>
+          <h2 class="featured-title">
+            <a href="{% url 'blog_detail' featured_blog.slug %}">{{ featured_blog.title }}</a>
+          </h2>
+          <div class="featured-meta">
+            <div class="meta-item">
+              <i class="far fa-calendar"></i>
+              <span>{{ featured_blog.posted_at }}</span>
+            </div>
+            <div class="meta-item">
+              <i class="far fa-clock"></i>
+              <span>8-9 min read</span>
+            </div>
+          </div>
+          <p class="featured-excerpt">{{ featured_blog.excerpt }}</p>
+          <a href="{% url 'blog_detail' featured_blog.slug %}" class="article-read-more">Read Full Article <i
+              class="fas fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Blog Layout -->
+      <div class="blog-layout">
+        <!-- Main Articles Grid -->
+        <div class="articles-grid">
+          <!-- Article 1 -->
+          {% for blog in blogs %}
+          <article class="article-card">
+            <div class="article-image">
+              <img src="{{ blog.image.url }}" alt="{{ blog.title }}" />
+            </div>
+            <div class="article-content">
+              <a href="{% url 'blog_detail' blog.slug%}" class="article-category">{{ blog.category }}</a>
+              <h3 class="article-title">
+                <a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a>
+              </h3>
+              <p class="article-excerpt">{{ blog.excerpt }}</p>
+              <div class="article-meta">
+                <span class="article-date"><i class="far fa-calendar"></i>{{ blog.posted_at }}</span>
+                <span class="article-read-time"><i class="far fa-clock"></i> 6-7 min read</span>
+              </div>
+              <a href="{% url 'blog_detail' blog.slug %}" class="article-read-more">Read More <i
+                  class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+          {% empty %}
+          <p style="grid-column: 1/-1; text-align: center; color: var(--gray)">No Articles under this category</p>
+          {% endfor %}
+        </div>
+
+        <!-- Blog Sidebar -->
+        <aside class="blog-sidebar">
+          <!-- Search Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Search Articles</h3>
+            <form class="search-form" method="GET" action="{% url 'blog_list' %}">
+              <input type="text" class="search-input" placeholder="Search wellness topics..." name="q"
+                value="{{ request.GET.q }}" />
+              <button type="submit" class="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Categories</h3>
+            <ul class="categories-list">
+              <li>
+                <a href="{% url 'blog_by_category' 'Weight Loss & Detox' %}">Weight Loss & Detox <span class="category-count"><i
+                      class="fas fa-search"></i></span></a>
+              </li>
+              <li>
+                <a href="{% url 'blog_by_category' 'Skin Care & Beauty' %}">Skin Care & Beauty <span class="category-count"><i
+                      class="fas fa-search"></i></span></span></a>
+              </li>
+              <li>
+                <a href="{% url 'blog_by_category' 'Digestive Health & Gut Wellness' %}">Digestive Health & Gut Wellness <span class="category-count"><i
+                      class="fas fa-search"></i></span></span></a>
+              </li>
+              <li>
+                <a href="{% url 'blog_by_category' 'Energy, Fitness & Performance' %}">Energy, Fitness & Performance <span class="category-count"><i
+                      class="fas fa-search"></i></span></span></a>
+              </li>
+              <li>
+                <a href="{% url 'blog_by_category' 'Health & Wellness Education' %}">Health & Wellness Education <span class="category-count"><i
+                      class="fas fa-search"></i></span></span></a>
+              </li>
+              <li>
+                <a href="{% url 'blog_by_category' 'Customer Stories & Results' %}">Customer Stories & Results <span class="category-count">
+                  <i class="fas fa-search"></i></span></a>
+              </li>
+              <li>
+                <a href="{% url 'blog_by_category' 'Buying Guides & FAQs' %}">Buying Guides & FAQs <span class="category-count">
+                  <i class="fas fa-search"></i></span></a>
+              </li><li>
+                <a href="{% url 'blog_by_category' 'Forever Living Business & Lifestyle' %}">Forever Living Business & Lifestyle <span class="category-count">
+                  <i class="fas fa-search"></i></span></a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Recent Posts Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Recent Posts</h3>
+            <ul class="recent-posts">
+              {% for recent in recently_added %}
+              <li class="recent-post-item">
+                <div class="recent-post-image">
+                  <img src="{{ recent.image.url }}" alt="{{ recent.title }}" />
+                </div>
+                <div class="recent-post-content">
+                  <h4>
+                    <a href="{% url 'blog_detail' recent.slug %}">{{ recent.title }}</a>
+                  </h4>
+                  <span class="article-date">{{ recent.posted_at }}</span>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Tags Widget -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Popular Tags</h3>
+            <div class="tags-container">
+              <a href="{% url 'blog_by_category' 'Weight Loss & Detox' %}" class="tag">Weight Loss & Detox</a>
+              <a href="{% url 'blog_by_category' 'Skin Care & Beauty' %}" class="tag">Skin Care & Beauty</a>
+              <a href="{% url 'blog_by_category' 'Buying Guides & FAQs' %}" class="tag">Buying Guides & FAQs</a>
+              <a href="{% url 'blog_by_category' 'Customer Stories & Results' %}" class="tag">Customer Stories & Results</a>
+              <a href="{% url 'blog_by_category' 'Health & Wellness Education' %}" class="tag">Health & Wellness Education</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-numbers">
+          &laquo;
+        </a>
+        {% endif %} {% for num in page_obj.paginator.page_range %}
+        <a href="?page={{ num }}" class="page-numbers {% if page_obj.number == num %}current{% endif %}">
+          {{ num }}
+        </a>
+        {% endfor %} {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="page-numbers">
+          &raquo;
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="newsletter-cta">
+    <div class="container">
+      <h2>Never Miss a Wellness Insight</h2>
+      <p>
+        Get the latest articles, research updates, and exclusive wellness
+        tips.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>ForeverWellness Care</h3>
+          <p>
+            Your trusted partner in natural wellness solutions. We're
+            committed to helping you live a healthier, more vibrant life
+            through the power of nature.
+          </p>
+          <div class="social-icons">
+            <a href="https://facebook.com/Forever Wellness Ke" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/foreverwellnesske" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/254794 507 658?text=Hello%20ForeverWellness%20Care" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://tiktok.com/@forever.wellness" target="_blank"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">Our Story</a></li>
+            <li><a href="{% url 'product_list' %}">Product Catalog</a></li>
+            <li><a href="{% url 'blog_list' %}">Wellness Blog</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Blog Categories</h3>
+          <ul class="footer-links">
+            <li>
+              <a href="{% url 'blog_by_category' 'Weight Loss & Detox' %}">
+                Weight Loss & Detox
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'blog_by_category' 'Skin Care & Beauty' %}">
+                Skin Care & Beauty
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'blog_by_category' 'Digestive Health & Gut Wellness' %}">
+                Digestive Health & Gut Wellness
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'blog_by_category' 'Energy, Fitness & Performance' %}">
+                Energy, Fitness & Performance
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'blog_by_category' 'Health & Wellness Education' %}">
+                Health & Wellness Education
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'blog_by_category' 'Customer Stories & Results' %}">
+                Customer Stories & Results
+              </a>
+            </li><li>
+              <a href="{% url 'blog_by_category' 'Buying Guides & FAQs' %}">
+                Buying Guides & FAQs
+              </a>
+            </li><li>
+              <a href="{% url 'blog_by_category' 'Forever Living Business & Lifestyle' %}">
+                Forever Living Business & Lifestyle
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact Information</h3>
+          <ul class="footer-contact">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <div>Reinsurance Plaza<br />4th Floor, Nairobi CBD</div>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <div>+254 794 507 658<br />Mon-Fri: 9am-5:30pm EST</div>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <div>
+                foreverwellnesskenya@gmail.com
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <p>
+          &copy; 2023 ForeverWellnessKe. All rights reserved. | Designed
+          with <i class="fas fa-heart" style="color: #e76f51"></i> for your
+          wellness journey
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // DOM Elements
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navLinks = document.getElementById("navLinks");
+    const searchForm = document.querySelector(".search-form");
+    const newsletterForms = document.querySelectorAll(".newsletter-form");
+    const articleCards = document.querySelectorAll(".article-card");
+    const recentPosts = document.querySelectorAll(".recent-post-item");
+    const popularArticles = document.querySelectorAll(".popular-article");
+
+    // Mobile navigation toggle
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+
+    // Article card click handlers
+    articleCards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        // Don't trigger if clicking on a link inside the card
+        if (!e.target.closest("a")) {
+          const articleLink = card.querySelector(".article-title a");
+          if (articleLink) {
+            const articleTitle = articleLink.textContent;
+            alert(`Navigating to article: "${articleTitle}"`);
+          }
+        }
+      });
+    });
+
+
+
+    // Animate elements on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll(
+        ".article-card, .sidebar-widget, .popular-article"
+      );
+
+      elements.forEach((element) => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+
+        if (elementPosition < screenPosition) {
+          element.style.opacity = "1";
+          element.style.transform = "translateY(0)";
+        }
+      });
+    }
+
+    // Set initial state for animation
+    document
+      .querySelectorAll(".article-card, .sidebar-widget, .popular-article")
+      .forEach((element) => {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(20px)";
+        element.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+      });
+
+    // Run animation on load and scroll
+    window.addEventListener("load", animateOnScroll);
+    window.addEventListener("scroll", animateOnScroll);
+
+    // Featured article hover effect
+    if (featuredArticle) {
+      featuredArticle.addEventListener("mouseenter", () => {
+        featuredArticle.style.transform = "translateY(-5px)";
+        featuredArticle.style.boxShadow = "0 20px 50px rgba(0, 0, 0, 0.2)";
+      });
+
+      featuredArticle.addEventListener("mouseleave", () => {
+        featuredArticle.style.transform = "translateY(0)";
+        featuredArticle.style.boxShadow = "0 15px 40px rgba(0, 0, 0, 0.15)";
+      });
+    }
+
+    // Filter functionality (simulated)
+    function filterArticles(category) {
+      alert(
+        `Filtering articles by category: ${category}. In a real implementation, this would show only articles from this category.`
+      );
+    }
+
+    // Add filter event listeners to categories
+    document
+      .querySelectorAll(".categories-list a")
+      .forEach((categoryLink) => {
+        categoryLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const category = categoryLink.textContent.split(" ")[0];
+          filterArticles(category);
+        });
+      });
+
+    // Add filter event listeners to tags
+    document.querySelectorAll(".tag").forEach((tag) => {
+      tag.addEventListener("click", (e) => {
+        e.preventDefault();
+        const tagName = tag.textContent;
+        filterArticles(tagName);
+      });
+    });
+
+    // Update reading times dynamically (simulated)
+    function updateReadingTimes() {
+      const articles = document.querySelectorAll(".article-card");
+      articles.forEach((article) => {
+        const excerpt = article.querySelector(".article-excerpt").textContent;
+        const wordCount = excerpt.trim().split(/\s+/).length;
+        const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
+
+        const readingTimeElement =
+          article.querySelector(".article-read-time");
+        if (readingTimeElement) {
+          readingTimeElement.innerHTML = `<i class="far fa-clock"></i> ${readingTime} min read`;
+        }
+      });
+    }
+
+    // Initialize reading times
+    updateReadingTimes();
+  </script>
+</body>
+
+</html>

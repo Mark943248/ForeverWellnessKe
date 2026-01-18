@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForeverWellness Care - Our Products</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Color Scheme */
+    :root {
+      --primary: #2a9d8f;
+      /* Teal - for wellness & vitality */
+      --primary-dark: #1d7873;
+      /* Darker teal */
+      --secondary: #e9c46a;
+      /* Soft gold - for energy */
+      --accent: #e76f51;
+      /* Coral - for action/CTAs */
+      --light: #f8f9fa;
+      /* Light background */
+      --dark: #264653;
+      /* Dark blue-gray - for text/nav */
+      --gray: #6c757d;
+      /* Medium gray */
+      --light-gray: #e9ecef;
+      /* Light gray */
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: 28px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--secondary);
+      letter-spacing: 1.5px;
+    }
+
+    .logo-main {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1;
+    }
+
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(42, 157, 143, 0.9), rgba(38, 70, 83, 0.9)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      text-align: center;
+      padding: 80px 20px;
+      margin-bottom: 60px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 25px;
+    }
+
+    /* Products Section */
+    .products-section {
+      padding: 0 20px 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .category-btn {
+      padding: 10px 25px;
+      background-color: var(--light-gray);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--dark);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .category-btn:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .category-btn.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px var(--shadow);
+    }
+
+    .product-img {
+      height: 220px;
+      background: var(--light-gray);
+      overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      background: rgba(42, 157, 143, 0.15);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .product-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      color: var(--gray);
+      flex-grow: 1;
+      margin-bottom: 12px;
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+      gap: 10px;
+    }
+
+    .page-numbers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background-color: var(--white);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 5px 15px var(--shadow);
+    }
+
+    .page-numbers:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .page-numbers.current {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .page-numbers.dots {
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(42, 157, 143, 0.1);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 60px 20px 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--secondary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--light-gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 18px;
+      transition: all 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--light-gray);
+      font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 15px var(--shadow);
+        gap: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-title h2 {
+        font-size: 30px;
+      }
+
+      .input-group.mb-3 {
+        width: 80% !important;
+        margin: 30px auto !important;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .logo-main {
+        font-size: 18px;
+      }
+
+      .logo-icon {
+        font-size: 22px;
+      }
+
+      .logo-text {
+        gap: 2px;
+      }
+
+      .logo-sub {
+        font-size: 9px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        padding: 0;
+      }
+
+      .product-card {
+        margin-bottom: 0;
+      }
+
+      .product-img {
+        height: 140px;
+      }
+
+      .product-info {
+        padding: 15px;
+      }
+
+      .product-title {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      .product-desc {
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+
+      .btn {
+        padding: 10px 12px;
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+    }
+
+    .section-title h2 {
+      font-size: 26px;
+    }
+
+    .section-title p {
+      font-size: 14px;
+    }
+
+
+    .category-filter {
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .category-btn {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+
+    .pagination {
+      margin-top: 30px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .page-numbers {
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="{% url 'home' %}" class="logo">
+        <i class="fas fa-leaf logo-icon"></i>
+        <div class="logo-text">
+          <span class="logo-main">ForeverWellnessKe</span>
+          <span class="logo-sub">NATURAL CARE</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li>
+          <a href="{% url 'product_list' %}" class="active">Products</a>
+        </li>
+        <li><a href="{% url 'blog_list' %}">Blog</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Our Premium Wellness Products</h1>
+      <p>
+        Discover natural wellness products crafted with the finest
+        ingredients.
+      </p>
+    </div>
+  </section>
+  <div class="input-group mb-3" style="display: flex; justify-content: center;">
+    <form action="{% url 'product_list' %}" method="GET" style="display: flex; align-items: center;">
+      <input type="search" class="form-control" placeholder="Search Products" aria-label="Recipient’s username"
+        aria-describedby="button-addon2" value="{{ request.GET.q }}" name="q">
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+    </form>
+  </div>
+
+
+  <section class="products-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Wellness Essentials</h2>
+        <p>Choose a category to filter products.</p>
+      </div>
+
+      <!-- CATEGORY BUTTONS -->
+        <div class="category-filter">
+          <a href="{% url 'product_list' %}" class="category-btn {% if not active_category %}active{% endif %}">All
+            Products</a>
+
+          <a href="{% url 'product_by_category' 'Bee Products' %}"
+            class="category-btn {% if active_category == 'supplements' %}active{% endif %}">Bee Products</a>
+
+          <a href="{% url 'product_by_category' 'Combo Packs' %}"
+            class="category-btn {% if active_category == 'skincare' %}active{% endif %}">Combo Packs</a>
+
+          <a href="{% url 'product_by_category' 'Nutritional Supplements' %}"
+            class="category-btn {% if active_category == 'weight' %}active{% endif %}">Nutritional Supplements</a>
+
+          <a href="{% url 'product_by_category' 'Drinks' %}"
+            class="category-btn {% if active_category == 'energy' %}active{% endif %}">Drinks</a>
+        </div>
+
+      <!-- PRODUCT GRID FIXED -->
+      <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+          <div class="product-img">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+          </div>
+
+          <div class="product-info">
+            <span class="product-category">{{ product.category }}</span>
+
+            <h3 class="product-title">{{ product.name }}</h3>
+
+            <p class="product-desc">
+              {{ product.benefits|truncatechars:100 }}
+            </p>
+
+            <div class="product-price">KSH {{ product.price }}</div>
+
+            <a href="{% url 'product_detail' product.slug %}" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> More Details
+            </a>
+          </div>
+        </div>
+        {% empty %}
+        <p style="grid-column: 1/-1; text-align: center; color: var(--gray)">
+          No products available in this category.
+        </p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="page-numbers">
+        &laquo;
+      </a>
+      {% endif %} {% for num in page_obj.paginator.page_range %}
+      <a href="?page={{ num }}" class="page-numbers {% if page_obj.number == num %}current{% endif %}">
+        {{ num }}
+      </a>
+      {% endfor %} {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="page-numbers">
+        &raquo;
+      </a>
+      {% endif %}
+    </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>ForeverWellness Care</h3>
+          <p>
+            Your trusted partner in natural wellness solutions. We're
+            committed to helping you live a healthier, more vibrant life.
+          </p>
+          <div class="social-icons">
+            <a href="https://facebook.com/Forever Wellness Ke"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/foreverwellnesske"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@forever.wellness"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/254794507658?text=Hello%20ForeverWellness%20Care"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'product_list' %}">Products</a></li>
+            <li><a href="{% url 'blog_list' %}">Blog</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact Info</h3>
+          <ul class="footer-links">
+            <li>
+              <i class="fas fa-map-marker-alt"></i> Reinsurance Plaza, 4th floor, Nairobi CBD
+            </li>
+            <li><i class="fas fa-phone"></i> +254 794 507 658</li>
+            <li>
+              <i class="fas fa-envelope"></i> foreverwellnesskenya@gmail.com
+            </li>
+            <li><i class="fas fa-clock"></i> Mon-Fri: 9am-5:30pm</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <p>
+            Subscribe to receive wellness tips, product updates, and exclusive
+            offers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>
+        &copy; 2023 ForeverWellnessKe. All rights reserved. | Designed
+        with <i class="fas fa-heart" style="color: #e76f51"></i> for your
+        wellness
+      </p>
+    </div>
+    </div>
+  </footer>
+  <script>
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    mobileToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+</body>
+
+</html>

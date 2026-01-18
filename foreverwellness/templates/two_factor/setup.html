@@ -1,0 +1,64 @@
+{% extends "two_factor/_base.html" %} {% load i18n %} {% block content %}
+<div class="step-indicator">
+  <div class="step active"></div>
+  <div class="step"></div>
+  <div class="step"></div>
+</div>
+
+<h2 class="form-title">Set Up Two-Factor Authentication</h2>
+<p class="text-muted mb-4">
+  Scan the QR code with your authenticator app to get started.
+</p>
+
+<div class="text-center mb-4 fade-in delay-2">
+  <div class="device-icon">
+    <i class="fas fa-mobile-alt"></i>
+  </div>
+  <h5>Use an Authenticator App</h5>
+  <p class="text-muted">We recommend Google Authenticator or Authy</p>
+</div>
+
+<form method="post" class="fade-in delay-1">
+  {% csrf_token %}
+
+  <div class="text-center mb-4">{{ form.qr_code }}</div>
+
+  <div class="mb-4">
+    <label for="id_token" class="form-label"
+      >Enter the 6-digit code from your app</label
+    >
+    <input
+      type="text"
+      name="token"
+      id="id_token"
+      class="form-control"
+      placeholder="123456"
+      autocomplete="off"
+      autofocus
+    />
+    {% if form.token.errors %}
+    <div class="text-danger mt-2">
+      {% for error in form.token.errors %} {{ error }} {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <button type="submit" name="confirm" class="btn btn-wellness mb-3">
+    <i class="fas fa-check-circle me-2"></i> Verify and Activate
+  </button>
+
+  <a href="{% url 'two_factor:profile' %}" class="btn btn-outline-secondary">
+    <i class="fas fa-times me-2"></i> Cancel Setup
+  </a>
+</form>
+
+<div class="mt-4 p-3 bg-light rounded fade-in delay-3">
+  <h6><i class="fas fa-info-circle me-2 text-primary"></i>How to set up:</h6>
+  <ol class="mb-0 ps-3" style="font-size: 0.9rem">
+    <li>Install Google Authenticator or Authy on your phone</li>
+    <li>Open the app and tap "Add Account"</li>
+    <li>Scan the QR code above</li>
+    <li>Enter the 6-digit code shown in the app</li>
+  </ol>
+</div>
+{% endblock %}

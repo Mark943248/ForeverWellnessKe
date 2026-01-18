@@ -1,0 +1,99 @@
+{% extends "two_factor/_base.html" %} {% load i18n %} {% block content %}
+<div class="step-indicator">
+  <div class="step active"></div>
+  <div class="step"></div>
+  <div class="step"></div>
+</div>
+
+<h2 class="form-title">Verify Your Identity</h2>
+<p class="text-muted mb-4">
+  Enter the 6-digit verification code from your authenticator app.
+</p>
+
+<form method="post" action="" class="fade-in delay-2">
+  {% csrf_token %} {% if form.non_field_errors %}
+  <div class="alert alert-danger">
+    {% for error in form.non_field_errors %} {{ error }} {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="mb-4">
+    <label for="id_otp_token" class="form-label">Verification Code</label>
+    <div class="otp-input-group">
+      {% for i in "123456" %}
+      <input
+        type="text"
+        name="otp_token_{{ i }}"
+        id="id_otp_token_{{ i }}"
+        class="otp-input form-control"
+        maxlength="1"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        autocomplete="off"
+      />
+      {% endfor %}
+    </div>
+    <input type="hidden" name="otp_token" id="id_otp_token" />
+    {% if form.otp_token.errors %}
+    <div class="text-danger mt-2">
+      {% for error in form.otp_token.errors %} {{ error }} {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="form-check mb-4">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="remember"
+      id="id_remember"
+    />
+    <label class="form-check-label" for="id_remember">
+      <small>Remember this device for 30 days</small>
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-wellness">
+    <i class="fas fa-sign-in-alt me-2"></i> Verify & Continue
+  </button>
+</form>
+
+<div class="divider">
+  <span class="divider-text">Or</span>
+</div>
+
+<div class="backup-option fade-in delay-3">
+  <div class="backup-title">
+    <i class="fas fa-key me-2"></i> Use Backup Token
+  </div>
+  <p class="mb-3">
+    <small>Lost access to your authenticator app? Use a backup token.</small>
+  </p>
+  <a
+    href="{% url 'two_factor:backup' %}"
+    class="btn btn-outline-primary btn-sm"
+  >
+    Use Backup Token
+  </a>
+</div>
+
+<script>
+  // Combine OTP digits into a single hidden field
+  document.addEventListener("DOMContentLoaded", function () {
+    const otpInputs = document.querySelectorAll(".otp-input");
+    const hiddenInput = document.getElementById("id_otp_token");
+
+    function updateHiddenInput() {
+      let otp = "";
+      otpInputs.forEach((input) => {
+        otp += input.value;
+      });
+      hiddenInput.value = otp;
+    }
+
+    otpInputs.forEach((input) => {
+      input.addEventListener("input", updateHiddenInput);
+    });
+  });
+</script>
+{% endblock %}
