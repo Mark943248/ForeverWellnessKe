@@ -1,7 +1,16 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.core.exceptions import ValidationError
 from django.utils.text import slugify
 # Create your models here.
+
+# limits image size to 2MB
+def validate_image_size(file):
+    # Limit to 2MB (2 * 1024 * 1024 bytes)
+    limit_mb = 2
+    if file.size > limit_mb * 1024 * 1024:
+        raise ValidationError(f"Maximum file size is {limit_mb}MB")
+    
 class Product(models.Model):
 
     CATEGORIE_CHOICES = [
@@ -16,7 +25,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     price = models.CharField(max_length=50)
-    image = CloudinaryField('image')
+    image = CloudinaryField('image', allowed_formats=['jpg', 'jpeg'], validators=[validate_image_size])
     category = models.CharField(max_length=100, choices=CATEGORIE_CHOICES)
     benefits = models.TextField()
     usage = models.TextField()
