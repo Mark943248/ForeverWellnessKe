@@ -5,3 +5,7 @@ venv/
 *.pyc
 __pycache__/
 
+# Ignore static files collected for production
+staticfiles/
+# Ignore sqlite database files
+db.sqlite3
