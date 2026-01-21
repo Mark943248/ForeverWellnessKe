@@ -35,7 +35,7 @@ import cloudinary.api
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    
     'Products',
     'Blog',
     'Pages',
@@ -242,7 +241,8 @@ CKEDITOR_5_CONFIGS = {
                 'alignLeft',
                 'alignRight',
                 'alignCenter',
-            ]
+            ],
+            'upload': ['jpeg', 'jpg', 'gif']
 
         },
         'table': {
