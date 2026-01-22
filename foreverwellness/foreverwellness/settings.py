@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-import django_heroku
+import dj_database_url
 from decouple import config
 
 load_dotenv()  # take environment variables from .env file
@@ -35,7 +35,7 @@ import cloudinary
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -121,6 +121,8 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),          # The port your DB server is running on
     }
 }
+
+DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
 
 
 # Password validation
@@ -308,5 +310,3 @@ LOGIN_REDIRECT_URL = 'admin:index'  # change to your dashboard url name
 LOGOUT_REDIRECT_URL = '/' # redirect to home after logout
 TWO_FACTOR_TOTP_DIGITS = 6 # number of digits in TOTP tokens
 TWO_FACTOR_LOGIN_TIMEOUT = 600 # time in seconds for login token validity
-
-django_heroku.settings(locals())
