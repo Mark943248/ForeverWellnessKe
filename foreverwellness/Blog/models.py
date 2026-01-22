@@ -30,7 +30,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
-    image = CloudinaryField('image', allowed_formats=['jpg', 'jpeg'], validators=[validate_image_size], blank=True, null=True)
+    image = CloudinaryField('image', allowed_formats=['jpg', 'jpeg', 'png'], validators=[validate_image_size], blank=True, null=True)
     excerpt = models.TextField()
     content = CKEditor5Field('Text', config_name='extends')
     posted_at = models.DateTimeField(auto_now_add=True)

@@ -25,7 +25,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
     price = models.CharField(max_length=50)
-    image = CloudinaryField('image', allowed_formats=['jpg', 'jpeg'], validators=[validate_image_size])
+    image = CloudinaryField('image', allowed_formats=['jpg', 'jpeg', 'png'], validators=[validate_image_size])
     category = models.CharField(max_length=100, choices=CATEGORIE_CHOICES)
     benefits = models.TextField()
     usage = models.TextField()

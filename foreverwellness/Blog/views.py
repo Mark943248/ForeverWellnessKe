@@ -8,12 +8,12 @@ def Blog_list(request):
     blogs = Blog.objects.filter(published=True).order_by('-posted_at')
     recently_added = Blog.objects.filter(published=True).order_by('-posted_at')[:5]
     featured_blog = Blog.objects.filter(published=True, featured=True).order_by('-posted_at').first()
-    paginator = Paginator(blogs, 6)  # Show 6 blogs per page
+    paginator = Paginator(blogs, 10)  # Show 10 blogs per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     query = request.GET.get('q')
     if query:
-        page_obj = Blog.objects.filter(
+        blogs = Blog.objects.filter(
             Q(title__icontains=query) |
             Q(excerpt__icontains=query) |
             Q(content__icontains=query) |
@@ -21,9 +21,10 @@ def Blog_list(request):
         ).order_by('-posted_at')
 
     return render(request, 'Blog/Blog_list.html', { 
-                                                   'blogs': page_obj, 
+                                                   'blogs': blogs, 
                                                    'recently_added': recently_added, 
-                                                   'featured_blog': featured_blog
+                                                   'featured_blog': featured_blog,
+                                                    'page_obj': page_obj
                                                    })
 
 def Blog_detail(request, slug):

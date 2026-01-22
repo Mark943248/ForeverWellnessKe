@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import django_heroku
+from decouple import config
 
 load_dotenv()  # take environment variables from .env file
 
@@ -33,7 +35,7 @@ import cloudinary
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -243,7 +245,7 @@ CKEDITOR_5_CONFIGS = {
                 'alignRight',
                 'alignCenter',
             ],
-            'upload': ['jpeg', 'jpg', 'gif']
+            'upload': ['jpeg', 'jpg', 'gif', 'png']
 
         },
         'table': {
@@ -306,3 +308,5 @@ LOGIN_REDIRECT_URL = 'admin:index'  # change to your dashboard url name
 LOGOUT_REDIRECT_URL = '/' # redirect to home after logout
 TWO_FACTOR_TOTP_DIGITS = 6 # number of digits in TOTP tokens
 TWO_FACTOR_LOGIN_TIMEOUT = 600 # time in seconds for login token validity
+
+django_heroku.settings(locals())

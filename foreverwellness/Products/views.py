@@ -10,7 +10,6 @@ def product_list(request):
     paginator = Paginator(products, 10)  # Show 10 products per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    products = page_obj
     query = request.GET.get('q')
     if query:
         products = Product.objects.filter(
@@ -18,7 +17,8 @@ def product_list(request):
             Q(benefits__icontains=query) |
             Q(category__icontains=query)
         ).order_by('-posted_at')
-    return render(request, 'products/product_list.html', {'products': products})
+    return render(request, 'products/product_list.html', {'products': products
+                                                          , 'page_obj': page_obj})
 
 # View to display product details
 def product_detail(request, slug):
@@ -26,7 +26,7 @@ def product_detail(request, slug):
     # To dispaly related products based on category
     related_products = Product.objects.filter(
         category = product.category # Filter by same category
-    ).exclude(id=product.id)[:6] # Limits n.o of products displayed
+    ).exclude(id=product.id)[:6].order_by('-posted_at') # Limits n.o of products displayed in order of most recent
 
     return render(request, 'products/product_details.html', {'product': product, 'related_products': related_products})
 
