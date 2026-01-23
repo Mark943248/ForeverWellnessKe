@@ -26,7 +26,7 @@ def product_detail(request, slug):
     # To dispaly related products based on category
     related_products = Product.objects.filter(
         category = product.category # Filter by same category
-    ).exclude(id=product.id)[:6].order_by('-posted_at') # Limits n.o of products displayed in order of most recent
+    ).exclude(id=product.id).order_by('-posted_at')[:6] # Limits n.o of products displayed in order of most recent
 
     return render(request, 'products/product_details.html', {'product': product, 'related_products': related_products})
 
