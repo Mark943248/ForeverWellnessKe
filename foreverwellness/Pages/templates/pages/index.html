@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -250,10 +250,8 @@
 
       /* Hero Section */
       .hero {
-        background: linear-gradient(
-            rgba(38, 70, 83, 0.85),
-            rgba(42, 157, 143, 0.9)
-          ),
+        background:
+          linear-gradient(rgba(38, 70, 83, 0.85), rgba(42, 157, 143, 0.9)),
           url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80");
         background-size: cover;
         background-position: center;
@@ -697,10 +695,8 @@
 
       /* CTA Section */
       .cta-section {
-        background: linear-gradient(
-            rgba(42, 157, 143, 0.9),
-            rgba(38, 70, 83, 0.9)
-          ),
+        background:
+          linear-gradient(rgba(42, 157, 143, 0.9), rgba(38, 70, 83, 0.9)),
           url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80");
         background-size: cover;
         background-position: center;
@@ -865,6 +861,38 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         z-index: 999;
         text-decoration: none;
+      }
+
+      .fixed-phone {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+
+        width: 55px;
+        height: 55px;
+
+        background: linear-gradient(45deg, #1e90ff, #007bff);
+        color: #fff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+        font-size: 24px;
+
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+        z-index: 1000;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .fixed-phone:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
       }
 
       /* Blog Section Container */
@@ -1134,7 +1162,7 @@
         .products-slider {
           grid-template-columns: repeat(2, 1fr);
         }
-         
+
         .article-grid {
           grid-template-columns: 1fr;
         }
@@ -1407,6 +1435,11 @@
       <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Phone Float button -->
+    <a href="tel:+254794507658" class="fixed-phone" aria-label="Call us">
+      <i class="fas fa-phone"></i>
+    </a>
+
     <!-- Wellness Benefits Section -->
     <section class="wellness-benefits section">
       <div class="container">
@@ -1614,7 +1647,9 @@
               <a href="https://www.tiktok.com/forever.wellness"
                 ><i class="fab fa-tiktok"></i
               ></a>
-              <a href="https://wa.me/254794507658?text=Hello%20ForeverWellness%20Care">
+              <a
+                href="https://wa.me/254794507658?text=Hello%20ForeverWellness%20Care"
+              >
                 <i class="fab fa-whatsapp"></i>
               </a>
             </div>
@@ -1652,9 +1687,7 @@
               </li>
               <li>
                 <i class="fas fa-envelope"></i>
-                <div>
-                  foreverwellnesskenya@gmail.com
-                </div>
+                <div>foreverwellnesskenya@gmail.com</div>
               </li>
             </ul>
           </div>
@@ -1662,8 +1695,8 @@
 
         <div class="copyright">
           <p>
-            &copy; 2023 ForeverWellnessKe. All rights reserved. | Designed
-            with <i class="fas fa-heart" style="color: #e76f51"></i> for your
+            &copy; 2023 ForeverWellnessKe. All rights reserved. | Designed with
+            <i class="fas fa-heart" style="color: #e76f51"></i> for your
             wellness journey
           </p>
         </div>
@@ -1689,7 +1722,7 @@
       // Animate elements on scroll
       function animateOnScroll() {
         const elements = document.querySelectorAll(
-          ".benefit-card, .testimonial-card, .product-card, .article-card"
+          ".benefit-card, .testimonial-card, .product-card, .article-card",
         );
 
         elements.forEach((element) => {
@@ -1706,7 +1739,7 @@
       // Set initial state for animation
       document
         .querySelectorAll(
-          ".benefit-card, .testimonial-card, .product-card, .article-card"
+          ".benefit-card, .testimonial-card, .product-card, .article-card",
         )
         .forEach((element) => {
           element.style.opacity = "0";
