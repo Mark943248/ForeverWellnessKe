@@ -20,9 +20,10 @@ from two_factor.urls import urlpatterns as tf_urls
 
 urlpatterns = [
     path('', include(tf_urls)),
-    path('FWKE-dashboard-2025/', admin.site.urls),
+    path('FWKE-dashboard/', admin.site.urls),
     path('', include('Products.urls')),
     path('', include('Pages.urls')),
     path('', include('Blog.urls')),
     path('', include('django_ckeditor_5.urls')),
+    path('users/', include('Users.urls')),
 ] 
