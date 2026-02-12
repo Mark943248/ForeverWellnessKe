@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'Products',
     'Blog',
     'Pages',
-    'Users',
 
     'cloudinary',
     'cloudinary_storage',

@@ -25,5 +25,4 @@ urlpatterns = [
     path('', include('Pages.urls')),
     path('', include('Blog.urls')),
     path('', include('django_ckeditor_5.urls')),
-    path('users/', include('Users.urls')),
 ] 
