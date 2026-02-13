@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-import dj_database_url
 from decouple import config
 
 load_dotenv()  # take environment variables from .env file
@@ -122,7 +121,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
+
 
 
 # Password validation
