@@ -303,7 +303,7 @@ AXES_LOCKOUT_PARAMETERS = [
 
 # django-otp settings
 
-TWO_FACTOR_PATCH_ADMIN = True  # to protect the admin site
+TWO_FACTOR_PATCH_ADMIN = False  #Intercepts the admin login view and adds 2FA to it 
 LOGIN_URL = 'two_factor:login' # change to two_factor login url name
 LOGIN_REDIRECT_URL = 'admin:index'  # change to your dashboard url name
 LOGOUT_REDIRECT_URL = '/' # redirect to home after logout

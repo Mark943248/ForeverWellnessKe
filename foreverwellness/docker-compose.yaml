@@ -1,0 +1,40 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: foreverwellness_web
+    ports:
+      - "8000:8000"
+    volumes:
+      - ..:/app
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: gunicorn --bind 0.0.0.0:8000 --chdir /app/foreverwellness foreverwellness.wsgi:application
+
+
+  db:
+    image: postgres:17
+    container_name: foreverwellness_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+volumes:
+  postgres_data:
+
+
